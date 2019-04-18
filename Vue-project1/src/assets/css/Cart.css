@@ -1,0 +1,278 @@
+li{
+  list-style: none;
+}
+#c_cart {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+.detail {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.detail-title {
+  height: 44px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.34375rem;
+  font-size: 1rem;
+}
+/* main */
+.main {
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #eee;
+}
+
+.main .good_cart {
+  flex:1;
+  width: 100%;
+  height: 127px;
+  background: #fff;
+  padding: 1.25rem;
+  border-bottom: 0.0625rem solid #f5f5f5;
+}
+.cartname{
+    font-size: 0.875rem;
+    color: #474245;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.kong{
+    width: 10px;
+    height: 15px;
+}
+.newprice{
+    color:rgb(255, 72, 145);
+}
+.ivu-checkbox{
+  width: 25px;
+}
+.good_cart .img{
+  display: inline-block;
+  width: 4.375rem;
+  height: 70px;
+  margin-left: 15px;
+}
+.good_cart_info{
+    width: 220px;
+    height: 86px;
+    float:right;
+}
+.good_cart_info p{
+    width: 143px;
+    float: left;
+}
+.cart_num{
+    padding-top: 56px;
+    font-size: 16px;
+}
+.cart_num span{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border:1px solid #ccc;
+    border-radius: 50%;
+    line-height: 23px;
+    text-align: center;
+    font-size: 16px;
+}
+.cart_num input{
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    border:1px solid transparent;
+}
+.good_cart .gouxuan{
+  display: inline-block;
+  width: 20px;
+  height: 43px;
+}
+.details{
+  font-size: 0.875rem;
+  margin-top: 0.625rem;
+  width: 100%;
+  padding: 0 0.625rem;
+}
+.details ul{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  background: #fff;
+  border-radius: 4%;
+}
+.details li{
+  border-bottom: 1px solid #eee;
+  line-height: 36px;
+  background: #fff;
+  margin: 0 5px;
+  color:#000;
+}
+.details .Dallprice{
+  height: 55px;
+  padding-top: 0.9375rem;
+}
+.details .Dallprice{
+  height: 60px;
+  font-size: 15px;
+}
+.details  span{
+  float: right;
+}
+.details .gift{
+  height: 36px;
+  line-height: 36px;
+}
+.details .allprice{
+  height: 55px;
+  line-height: 55px;
+}
+.details .allprice p{
+  float: right;
+  font-size: 1.125rem;
+}
+.details .allprice p span{
+  color: #ff4891;
+}
+.showgood p{
+  padding: 0 0.9375rem;
+  font-size: 1.25rem;
+  color: #474245;
+  line-height: 1.75rem;
+  margin-bottom: 10px;
+}
+.showgood .showimg{
+  padding: 0 .5625rem;
+}
+/* 底部 */
+#footer {
+  height: 46px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.34375rem;
+  flex-direction: row-reverse;
+}
+#footer .el-radio {
+  font-size: 30px;
+}
+#footer .el-radio__inner {
+  width: 20px;
+}
+#footer ul {
+  display: flex;
+}
+#footer ul li {
+  flex: 1;
+  height: 46px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#footer ul li img {
+  width: 23px;
+}
+#footer ul li span {
+  height: 10px;
+  font-size: 10px;
+}
+
+
+.C-footer-label {
+  line-height: 46px;
+  font-size: 12px;
+  width: 30px;
+}
+.C-footer-price {
+
+  position: relative;
+}
+.C-footer-price p {
+  padding-top: 5px;
+  position: absolute;
+  width: 120px;
+  font-size: 12px;
+}
+.C-footer-price .sprice {
+  color: #262626;
+}
+.C-footer-price .dyunfei {
+  bottom: 15%;
+  color: #969696;
+}
+.C-footer-total {
+  padding-left: 10px;
+  font-size: 12px;
+  width: 57px;
+  height: 20px;
+  float: left;
+}
+.C-footer-info {
+  font-size: 12px;
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+}
+
+.cfooter {
+  height: 2.875rem;
+  display: flex;
+  justify-content: space-evenly;
+  background: #fff;
+  border-top: 0.0625rem solid #e6e6e6;
+  border-bottom: 0.0625rem solid #e6e6e6;
+  background-color: #fff;
+}
+.cfooter .C-footer-content {
+  width: 67%;
+}
+.C-footer-all{
+  width: 4.625rem;
+  float: left;
+  line-height:46px;
+}
+.C-footer-all input{
+  margin: 12px 6px 0 12px;
+  width: 22px;
+  height: 22px;
+}
+.cfooter .C-footer-content .C-footer_l{
+    padding-top: 10px;
+    padding-left: 20px;
+}
+.cfooter div {
+  display: flex;
+  height: 46px;
+  border-bottom:none;
+}
+.g_num {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+}
+.bb {
+  width: 100%;
+  height: 100px;
+}
+.cfooter #gwc {
+  font-size: 24px;
+}
+.addcart {
+  width: 33%;
+  height: 2.875rem;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ff4891;
+  color: #fff;
+  font-size: 1.125rem;
+}
