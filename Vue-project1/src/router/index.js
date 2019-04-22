@@ -9,12 +9,10 @@ import NotFound from '../pages/NotFound'
 import Fund from '../pages/Fund'
 import Me from '../pages/Me'
 import Login from '../pages/Login'
-
-
 import Detail from '../pages/Detail'
 import Cart from '../pages/Cart'
-
-
+import Register from '../pages/Register'
+import Mine from '../pages/Mine'
 
 // Home的嵌套路由
 import Hot from '../homepages/Hot.vue'
@@ -130,6 +128,16 @@ let router = new VueRouter({
             name:'Login',
             path:'/login',
             component:Login
+        },
+        {
+            name:'Register',
+            path:'/register',
+            component:Register
+        },
+        {
+            name:'Mine',
+            path:'/mine',
+            component:Mine
         },
         // 404
         {

@@ -41,22 +41,23 @@
             <img src="../assets/meiri.png" alt="" style="margin-left:5px">
         </div>
         <div class="h-bg">
-            <img src="../assets/shoudan.jpg" alt="">
+            <img src="../assets/shoudan.jpg" alt="" @click="ddd">
         </div>
-        <div class="h-sp">
+        <div class="h-sp " v-for="(gocart,idx) in gocart" :key="idx" >
             <div class="spn">
-                <img src="../assets/ap.jpeg" alt="" class="apimg">
-                <p class="sp1">
+                <img :src="gocart.image" alt="" class="apimg" @click="caxq(gocart.uid)">
+                <p class="sp1" v-text="gocart.name">
                     1个新疆阿克苏苹果大果190g起
                 </p>
-                <p class="sp2">蜜汁甜 再一次回味初恋</p>
-                <p class="sp3"><span>新人专享</span></p>
-                <span class="sn2"><span class="sn1">￥</span>1</span>
-                <span class="sn3">￥<span class="sn4">69</span></span>
-                <img src="../assets/sy-cart.png" alt="" class="apimg2" v-show="goods" @click="goodsimg">
+                <p class="sp2" v-text="gocart.subtitle">蜜汁甜 再一次回味初恋</p>
+                <p class="sp3">新人专享</p>
+                <span class="sn1">￥</span>
+                <span class="sn2" v-text="gocart.lprice">1</span>
+                <span class="sn3">￥<span class="sn4" v-text="gocart.lotlprice">69</span></span>
+                <img src="../assets/sy-cart.png" alt="" class="apimg2" v-show="goods[idx]" @click="goodsimg(idx) ">
                 <!-- <el-input-number size="mini" v-model="num" :min="0" :max="10" style="float:right" v-show="numbers" @click="numberimg"></el-input-number> -->
-                <div class="car" v-show="numbers">
-                    <button v-on:click="subtract" class="btn1">-</button>
+                <div class="car" v-show="numbers[idx]" >
+                    <button v-on:click="subtract(idx)" class="btn1">-</button>
                     <input type="text" value="1" size="1" v-model="num" class="ipt">
                     <button v-on:click="add" class="btn2">+</button>
                 </div>
@@ -67,33 +68,53 @@
 <script>
 import ElementUI from "element-ui";
 export default {
+    
   data() {
       return {
         goods: true,
         numbers:false,
         num: 1,
+        gocart:[],
       }
     },
     mounted(){
         
     },
+    created(){
+        this.$axios.post(
+            "http://106.15.176.14:3000/home/goods",
+        )
+        .then((res)=>{
+            this.gocart = res.data;
+            console.log(this.gocart);
+        })
+    },
     methods:{
         add(){
           this.num++;
         },
-        subtract(){
+        ddd(){
+           
+        },
+        caxq(uid){
+            this.$router.push({"name":'Detail',query:{uid}});
+        },
+        subtract(idx){
+            console.log(idx);
           if (this.num<=1){
-            this.goods = true;
-            this.numbers = false; 
+            this.goods[idx] = true;
+            this.numbers[idx] = false; 
           }else {
             this.num-=1;
           }
         },
-        goodsimg(){
-            this.goods=false;
-            this.numbers=true;
+        goodsimg(idx){
+            
+            this.goods[idx]=false;
+            this.numbers[idx]=true;
         },
     }
+    
 };
 </script>
 
@@ -210,24 +231,29 @@ export default {
 }
 .h-sp .spn .sp3{
     float: left;
-    width: 200px;
-    height: 20px;
-    line-height: 20px;
-    margin:0 5px 26px 0;
+    width: 50px;
+    height: 18px;
+    line-height: 18px;
+    margin:0 150px 26px 0;
+    border: 1px solid #f59fc1;
+    /* height: 14px; */
+    font-size: 12px;
+    color: #f59fc1;
+    /* line-height: 16px; */
 }
-.h-sp .spn .sp3 span{
+/* .h-sp .spn .sp3 span{
     border: 1px solid #f59fc1;
     height: 14px;
     font-size: 12px;
     color: #f59fc1;
     line-height: 16px;
-}
-.h-sp .spn .sn2 .sn1{
+} */
+.h-sp .spn  .sn1{
     float: left;
     height: 14px;
     font-size: 12px;
-    /* color: #ff4891;
-    margin-top: 10px; */
+    color: #ff4891;
+    margin-top: 10px; 
 }
 .h-sp .spn .sn2{
     float: left;
@@ -246,10 +272,10 @@ export default {
     text-decoration: line-through;
 }
 .h-sp .spn .apimg2{
-    float: left;
+    float: right;
     height: 45px;
     width: 45px;
-    margin-left: 110px;
+    /* margin-left: 105px; */
 }
 .h-sp .spn .car{
     float: right;
@@ -257,6 +283,7 @@ export default {
     height: 28px;
     list-style: none;
     line-height: 28px;
+    margin-top: 5px;
 }
 .h-sp .spn .car .btn1{
     /* float: left; */
@@ -272,7 +299,7 @@ export default {
 .h-sp .spn .car .ipt{
     width: 40px;
     height: 20px;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     border: none;
 }

@@ -3,16 +3,17 @@
         <div class="h-bg">
             <img src="../assets/viptj.png" alt="">
         </div>
-        <div class="h-sp">
+        <div class="h-sp" v-for="vip in vips" :key="vip.id">
             <div class="spn">
-                <img src="../assets/ap.jpeg" alt="" class="apimg">
-                <p class="sp1">
+                <img :src="vip.image" alt="" class="apimg">
+                <p class="sp1" v-text="vip.name">
                     1个新疆阿克苏苹果大果190g起
                 </p>
-                <p class="sp2">蜜汁甜 再一次回味初恋</p>
+                <p class="sp2" v-text="vip.subtitle">蜜汁甜 再一次回味初恋</p>
                 <p class="sp3"><span>新人专享</span></p>
-                <span class="sn2"><span class="sn1">￥</span>1</span>
-                <span class="sn3">￥<span class="sn4">69</span></span>
+                <span class="sn1">￥</span>
+                <span class="sn2" v-text="vip.lprice">1</span>
+                <span class="sn3">￥<span class="sn4" v-text="vip.lotlprice">69</span></span>
                 <img src="../assets/sy-cart.png" alt="" class="apimg2" v-show="goods" @click="goodsimg">
                 <!-- <el-input-number size="mini" v-model="num" :min="0" :max="10" style="float:right" v-show="numbers" @click="numberimg"></el-input-number> -->
                 <div class="car" v-show="numbers">
@@ -31,9 +32,21 @@ export default {
         goods: true,
         numbers:false,
         num: 1,
+        vips:[]
       }
     },
     mounted(){
+        
+    },
+    created(){
+         this.$axios.post(
+            "http://106.15.176.14:3000/home/goods",
+        )
+        .then((res)=>{
+            this.vips = res.data;
+    
+            // console.log(this.vips);
+        })
         
     },
     methods:{
@@ -66,8 +79,8 @@ export default {
 .h-bg{
     flex: 1;
     width: 100%;
-    height: 90px;
-    /* padding-top: 15px; */
+    height: 71px;
+    padding-top: 15px;
 }
 .h-bg img{
     width: 100%;
@@ -112,24 +125,29 @@ export default {
 }
 .h-sp .spn .sp3{
     float: left;
-    width: 200px;
-    height: 20px;
-    line-height: 20px;
-    margin:0 5px 26px 0;
+    width: 50px;
+    height: 18px;
+    line-height: 18px;
+    margin:0 150px 26px 0;
+    border: 1px solid #f59fc1;
+    /* height: 14px; */
+    font-size: 12px;
+    color: #f59fc1;
+    /* line-height: 16px; */
 }
-.h-sp .spn .sp3 span{
+/* .h-sp .spn .sp3 span{
     border: 1px solid #f59fc1;
     height: 14px;
     font-size: 12px;
     color: #f59fc1;
     line-height: 16px;
-}
-.h-sp .spn .sn2 .sn1{
+} */
+.h-sp .spn  .sn1{
     float: left;
     height: 14px;
     font-size: 12px;
-    /* color: #ff4891;
-    margin-top: 10px; */
+    color: #ff4891;
+    margin-top: 10px; 
 }
 .h-sp .spn .sn2{
     float: left;
@@ -148,10 +166,10 @@ export default {
     text-decoration: line-through;
 }
 .h-sp .spn .apimg2{
-    float: left;
+    float: right;
     height: 45px;
     width: 45px;
-    margin-left: 110px;
+    /* margin-left: 105px; */
 }
 .h-sp .spn .car{
     float: right;
@@ -159,6 +177,7 @@ export default {
     height: 28px;
     list-style: none;
     line-height: 28px;
+    margin-top: 5px;
 }
 .h-sp .spn .car .btn1{
     /* float: left; */
@@ -174,7 +193,7 @@ export default {
 .h-sp .spn .car .ipt{
     width: 40px;
     height: 20px;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     border: none;
 }

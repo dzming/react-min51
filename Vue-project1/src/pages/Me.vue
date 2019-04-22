@@ -2,10 +2,10 @@
   <div id="me">
     <div class="me">
       <div class="m-tab">
-        <el-button plain size="small" @click="$router.push({ path: '/login' })">用户登录</el-button>
-        <div class="touxiang" style="display:none">
-          <img src="../assets/给心.jpg">
-          <span>124543484</span>
+        <el-button plain size="small" @click="$router.push({ path: '/login' })" v-show="Loginx">用户登录</el-button>
+        <div class="touxiang" v-show="Tuichux">
+          <img src="../assets/gerens.jpg">
+          <span v-text="user">124543484</span>
         </div>
       </div>
       <ul class="me-u1">
@@ -87,7 +87,7 @@
         意见反馈
         <span class="rg5">></span>
       </div>
-      <div class="me-mine">
+      <div class="me-mine" @click="$router.push({ path: '/mine' })">
         关于我们
         <span class="rg5">></span>
       </div>
@@ -121,7 +121,25 @@
 <script>
 import ElementUI from "element-ui";
 export default {
-  
+    data(){
+        return{
+            Loginx: true,
+            Tuichux: false,
+            user:""
+        }
+    },
+    mounted(){
+      if(localStorage.getItem("resname")){
+          this.Loginx = false;
+          this.Tuichux = true;
+          this.user=localStorage.getItem("resname");
+          
+      }else{
+          this.Loginx = true;
+          this.Tuichux = false;
+          this.user=localStorage.getItem("resname");
+      }
+    },
 };
 </script>
 <style scoped>

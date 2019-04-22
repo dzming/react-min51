@@ -16,11 +16,10 @@
         :interval="5000"
         arrow="never"
       >
-        <el-carousel-item v-for="(item,idx) in imgs" :key="idx">
+        <el-carousel-item v-for="(item,idx) in images" :key="idx">
           <h3>
-            <img :src="item.src" alt>
+            <img :src="item">
           </h3>
-          
         </el-carousel-item>
         <!-- <span  class="g_num">{{idx+1}}/4</span> -->
       </el-carousel>
@@ -29,20 +28,20 @@
 
       <div class="product-describe">
         <div class="product-describe-title">
-          <span class="subtitle-text">只用整头鲜牛肉</span>
+          <span class="subtitle-text">{{goods.name}}</span>
         </div>
         <div class="product-item-title product-detail-name">
-          <p class="sub-title padding">蜀道香麻辣牛肉100g</p>
+          <p class="sub-title padding">{{goods.subtitle}}</p>
         </div>
         <div class="toname">
           <div class="left_price">
             <div class="up_price">
               <span>￥</span>
-              <span>12.8</span>
+              <span>{{goods.lotlprice}}</span>
             </div>
             <div class="down_price">
               <span>￥</span>
-              <span>8.9</span>
+              <span>{{goods.lprice}}</span>
             </div>
           </div>
           <div class="right_num">
@@ -124,10 +123,7 @@
         </div>
         <div class="instruction-list-container">
           <div class="image-pre-container instruction-item">
-            <img
-              src="https://image.missfresh.cn/4289bfa02ee3489f82c758cef2b61ac9.jpg"
-              class="image-pre-img"
-            >
+            <img :src="goods.image" class="image-pre-img">
             <!---->
             <!---->
           </div>
@@ -275,42 +271,129 @@
       <div class="tocart" @click="$router.push({ path: '/cart' })">
         <span id="gwc" class="icon iconfont c_gwc">&#xe635;</span>
       </div>
-      <div class="addcart" @click="$router.push({  })">
+      <div class="addcart" @click="getcart()">
         <span>加入购物车</span>
       </div>
     </div>
   </div>
 </template>
 <script>
+import qs from "qs";
 export default {
   data() {
     return {
-      idx: "",
-      imgs: [
-        {
-          src: require("../assets/goods1.jpg")
-        },
-        {
-          src: require("../assets/goods2.jpg")
-        },
-        {
-          src: require("../assets/goods3.jpg")
-        },
-        {
-          src: require("../assets/goods4.jpg")
-        }
-      ]
+      goods: [],
+      images: [],
+      leg: "0",
+      uid: "",
+      timer: "null"
     };
   },
   methods: {
-    // shownum() {
-    //   this.imgs.forEach((item, index) => {
-    //     this.idx=index
-    //   });
-    // }
+    // add() {
+    //   this.num++;
+    // },
+    //获取goods表里的商品数据
+    getgoods() {
+      // let uid = "3"; //模拟列表页传过来的商品假id
+      this.uid = this.$route.query.uid;
+      let uid =this.uid;
+      this.$axios
+        .get(`http://106.15.176.14:3000/cart/getgoods?uid=${uid}`)
+        .then(res => {
+          this.goods = res.data[0];
+          this.images = res.data[0].images;
+          this.uid = this.goods.uid;
+          // console.log(this.goods.uid);
+        });
+    },
+    //获取cart表里的商品数据
+
+    getcart() {
+      let timer = this.timer;
+      clearTimeout(timer);
+
+      let uid =this.uid; //模拟列表页传过来的商品假id
+      console.log(uid);
+      setTimeout(timer => {
+        console.log(uid);
+        //触发请求
+        this.$axios
+          .get(`http://106.15.176.14:3000/cart?uid=${uid}`)
+          .then(res => {
+            let leg = res.data.length;
+            let goodsnum = 0;
+            if (leg > 0) {
+              goodsnum = parseInt(res.data[0].num);
+            } else {
+              goodsnum = 1;
+              console.log(goodsnum);
+            }
+            this.addcart(leg, goodsnum);
+          });
+      }, 1000);
+    },
+
+    addcart(leg, goodsnum) {
+      this.popupVisible = false;
+      let image = this.goods.image;
+      let subtitle = this.goods.subtitle; //商品名字
+      let lotlprice = this.goods.lotlprice;
+      let lprice = this.goods.lprice;
+      let name = this.goods.name;
+      // console.log(leg);
+      if (leg > 0) {
+        // console.log(this.goods.uid);
+        this.$axios
+          .post(
+            "http://106.15.176.14:3000/cart/updata",
+            qs.stringify(
+              {
+                uid: this.goods.uid,
+                num: goodsnum + 1
+              },
+              {
+                headers: { "Content-type": "application/x-www-form-urlencoded" }
+              },
+              {
+                withCredentials: true
+              }
+            )
+          )
+          .then(res => {
+            alert("加入成功");
+          });
+      } else if (leg <= 0) {
+        // console.log(goodsnum, image, subtitle, this.goods.uid);
+        this.$axios
+          .post(
+            "http://106.15.176.14:3000/cart/insert",
+            qs.stringify(
+              {
+                uid: this.goods.uid,
+                num: goodsnum,
+                image: image,
+                subtitle: subtitle,
+                lotlprice: lotlprice,
+                lprice: lprice,
+                name: name
+              },
+              {
+                headers: { "Content-type": "application/x-www-form-urlencoded" }
+              },
+              {
+                withCredentials: true
+              }
+            )
+          )
+          .then(res => {
+            alert("加入成功");
+          });
+      }
+    }
   },
-  created(){
-    // this.shownum();
+  created() {
+    this.getgoods();
   }
 };
 </script>
@@ -318,7 +401,7 @@ export default {
 li {
   list-style: none;
 }
-.jietu img{
+.jietu img {
   width: 100%;
 }
 .detail {
@@ -351,7 +434,7 @@ li {
   font-size: 22px;
   color: #000;
 }
-.el-carousel{
+.el-carousel {
   background: #fff;
 }
 /* main */
