@@ -1,0 +1,73 @@
+.navs{
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    margin-top: 10px;
+    border-bottom: 1px solid #e4e4e4;
+    box-sizing: border-box;
+    flex: 1;
+}
+.navimgs{
+    float: left;
+    font-size: 14px;
+    height: 23px;
+    margin: 9px 0 0 10px;
+}
+.navh2{
+    float: left;
+    margin-left: 5px;
+    font-size: 14px;
+    color: #6a6a6a;
+}
+.navh3{
+    float: right;
+    font-size: 10px;
+    color: #6a6a6a;
+    margin-right: 5px;
+}
+.p1{
+    height: 60%;
+    width: 100%;
+    flex: 1;
+}
+.rems{
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    border-bottom: 1px solid #e4e4e4;
+    box-sizing: border-box;
+    border-top: 8px solid #f0f0f0;
+    flex: 1;
+}
+.remimgs{
+    float: left;
+    height: 20px;
+    margin: 10px 0 0 10px;
+}
+.remsh2{
+    height: 40px;
+    line-height: 40px;
+    margin-left: 5px;
+    float: left;
+    font-size: 14px;
+    color: #6a6a6a;
+}
+.botns{
+    height: 150px;
+    width: 100%;
+
+}
+.botnimgs{
+    float: left;
+    width: 158px;
+    height: 56px;
+    margin: 17px 45% 0 8px;
+}
+.botnp{
+    float: left;
+    width: 100%;
+    height: 16px;
+    line-height: 16px;
+    font-size: 12px;
+    margin: 0 0 0 20px;
+}

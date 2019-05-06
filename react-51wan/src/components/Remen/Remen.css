@@ -1,0 +1,22 @@
+.navs{
+    float: left;
+    height:70px;
+    width: 100%;
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+    /* padding-bottom: 5px; */
+}
+
+.a2{
+    float: left;
+    height: 23px;
+    /* width: 75px; */
+    text-align: center;
+    line-height: 23px;
+    border: 1px solid #ff6d00;
+    color: #ffffff;
+    background: #ff6d00;
+    border-radius: 5px;
+    font-size: 12px;
+}

@@ -1,0 +1,48 @@
+li{
+    list-style: none;
+}
+#reg {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.reg {
+    height: 42px;
+    background: #FF6D00;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+    color:#fff;
+  }
+  .reg .span1{
+    font-size: 17px;
+    padding-left:36px;
+    height: 27px;
+    line-height: 27px;
+    background: url(../../assets/youx.png)no-repeat 8px center;
+    background-size: 22.8px 22.8px;
+}
+.reg .span2{
+    display: inline-block;
+    width: 20px;
+    font-size: 15px;
+    padding-right: 20px;
+    height: 27px;
+    line-height: 27px;
+    background: url(../../assets/user.png)no-repeat 8px center;
+    background-size: 18.8px 18.8px;
+  }
+
+.reg p{
+      font-size: 15px;
+}
+.clearfix{
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #fff;
+    padding: 0 12px;
+  }
