@@ -1,4 +1,4 @@
-# vue_project
+# 项目
 
 ## Project setup
 ```
